@@ -11,7 +11,29 @@ set -ouex pipefail
 
 # this installs a package from fedora repos
 # dnf5 install -y tmux
-dnf5 remove waydroid waydroid-selinux ptyxis lutris
+dnf5 remove -y waydroid waydroid-selinux ptyxis lutris
+
+
+# ADD SECURITY FEATURES
+dnf5 install -y dnscrypt-proxy
+
+sudo tee -a /etc/NetworkManager/conf.d/00-macrandomization.conf > /dev/null << 'EOF'
+[device]
+wifi.scan-rand-mac-address=yes
+
+[connection]
+wifi.cloned-mac-address=stable
+ethernet.cloned-mac-address=stable
+EOF
+
+sudo tee -a /etc/sysctl.d/99-network-hardening.conf > /dev/null << 'EOF'
+net.ipv4.conf.all.accept_redirects = 0
+net.ipv6.conf.all.accept_redirects = 0
+
+net.ipv4.icmp_echo_ignore_broadcasts = 1
+
+kernel.randomize_va_space = 2
+EOF
 
 # Use a COPR Example:
 #
