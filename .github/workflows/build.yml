@@ -113,8 +113,8 @@ jobs:
         id: rechunk
         uses: ublue-os/legacy-rechunk@a925083d9af7cb04b3e2a6e8c01bfa495f38b710 # v1.0.0
         with:
-          rechunk: "ghcr.io/ublue-os/bazzite-nvidia-open"
-          ref: "localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
+          rechunk: "ghcr.io/why-context/bazzite-config"
+          ref: "localhost:5000/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
           prev-ref: "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
           skip_compression: false
           version: ${{ env.CENTOS_VERSION }}
