@@ -97,10 +97,6 @@ jobs:
           sep-tags: " "
           sep-annotations: " "
 
-      - name: Start Local Registry
-        run: |
-          podman run -d -p 5000:5000 --restart=always --name registry registry:2
-
       - name: Build Image
         id: build_image
         uses: redhat-actions/buildah-build@7a95fa7ee0f02d552a32753e7414641a04307056 # v2
@@ -123,7 +119,7 @@ jobs:
         uses: ublue-os/legacy-rechunk@a925083d9af7cb04b3e2a6e8c01bfa495f38b710 # v1.0.0
         with:
           rechunk: "ghcr.io/ublue-os/legacy-rechunk:v1.0.0-x86_64"
-          ref: "localhost:5000/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
+          ref: "containers-storage:localhost/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
           prev-ref: "${{ env.IMAGE_REGISTRY }}/${{ env.IMAGE_NAME }}:${{ env.DEFAULT_TAG }}"
           skip_compression: true
           version: ${{ env.CENTOS_VERSION }}
