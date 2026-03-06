@@ -12,7 +12,7 @@ set -ouex pipefail
 dnf5 remove -y waydroid waydroid-selinux ptyxis lutris qemu qemu-* spice-server akonadi-server konsole
 
 dnf5 copr enable scottames/ghostty -y
-dnf5 install -y ghostty --skip-unavailable
+dnf5 install -y ghostty tuned tuned-ppd --skip-unavailable
 dnf5 -y copr disable scottames/ghostty
 
 # Use a COPR Example:
