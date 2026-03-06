@@ -23,6 +23,7 @@ FROM ghcr.io/ublue-os/bazzite-nvidia-open:stable
 ## Uncomment the following line if one desires to make /opt immutable and be able to be used
 ## by the package manager.
 
+LABEL "org.eriks.bootc.rootfs"="btrfs"
 RUN rm /opt && mkdir /opt
 
 ### MODIFICATIONS
